@@ -110,9 +110,10 @@ body {
 .widget {
 	@include flex(flex, null, null, column);
 	min-height: 1px;
-	padding: 7px;
+	padding: 15px;
 	border-radius: var(--border-radius-md);
 	height: 100%;
+	box-shadow: var(--card-shadow);
 	background-color: var(--card-bg);
 
 	.btn {
@@ -957,7 +958,7 @@ body {
 	}
 
 	.layout-main-section {
-		background-color: var(--fg-color);
+		// background-color: var(--fg-color);
 		box-shadow: var(--card-shadow);
 		border-radius: var(--border-radius-lg);
 		padding: var(--padding-sm);
