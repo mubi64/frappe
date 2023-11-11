@@ -129,9 +129,8 @@ def as_pdf():
 def as_binary():
 	response = Response()
 	response.mimetype = "application/octet-stream"
-	response.headers["Content-Disposition"] = (
-		'filename="%s"' % frappe.response["filename"].replace(" ", "_")
-	).encode("utf-8")
+	filename = "_".join(frappe.response["filename"].split())
+	response.headers["Content-Disposition"] = ('filename="%s"' % filename).encode("utf-8")
 	response.data = frappe.response["filecontent"]
 	return response
 
@@ -223,7 +222,6 @@ def download_backup(path):
 def download_private_file(path: str) -> Response:
 	"""Checks permissions and sends back private file"""
 
-	can_access = False
 	files = frappe.get_all("File", filters={"file_url": path}, fields="*")
 	# this file might be attached to multiple documents
 	# if the file is accessible from any one of those documents
